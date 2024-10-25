@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE form-validation PUBLIC
+        "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+        "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+
+<form-validation>
+<!-- common validation -->
+<formset>
+<form name="empregVFBean">
+
+<field property="id_f" depends="intRange">
+	<arg key="id_f" resource="false"/>
+	<arg key="${var:min}" resource="false"/>
+	<arg key="${var:max}" resource="false"/>
+<var>
+	<var-name>min</var-name>
+	<var-value>111</var-value>
+</var>	
+<var>
+	<var-name>max</var-name>
+	<var-value>199</var-value>
+</var>
+</field>
+
+<field property="name_f" depends="required">
+	<arg key="name_f" resource="false"/>
+</field>
+
+<field property="email_f" depends="required,email">
+	<arg key="email_f" resource="false"/>
+</field>
+
+<field property="credit_f" depends="creditCard">
+	<arg key="credit_f" resource="false"/>
+</field>
+
+</form>
+</formset>
+
+<!-- international validation -->
+
+<formset language="en" country="IN">
+<form name="empregVFBean">
+<field property="phone_f" depends="mask">
+	<arg key="phone_f" resource="false"/>
+<var>
+<var-name>mask</var-name>
+<var-value>^[7-9]\d{9}$</var-value>
+</var>
+</field>
+<field property="salary_f" depends="float">
+	<arg key="salary_f" resource="false"/>
+	<arg key="${var:min}" resource="false"/>
+	<arg key="${var:max}" resource="false"/>
+<var>
+<var-name>min</var-name>
+<var-value>10000.0</var-value>
+</var>
+<var>
+<var-name>max</var-name>
+<var-value>40000.00</var-value>
+</var>
+</field>
+</form>
+</formset>
+
+<!-- US validation -->
+
+<formset country="US" language="en">
+<form name="empregVFBean">
+<field property="phone_f" depends="mask">
+<arg key="phone_f" resource="false"/>
+<var>
+<var-name>mask</var-name>
+<var-value>^[2-4]\d{9}$</var-value>
+</var>
+</field>
+<field property="salary_f" depends="float">
+<arg key="salary_f" resource="false"/>
+<arg key="${var:min}" resource="false"/>
+<arg key="${var:max}" resource="false"/>
+<var>
+<var-name>min</var-name>
+<var-value>50000.00</var-value>
+</var>
+<var>
+<var-name>max</var-name>
+<var-value>80000.00</var-value>
+</var>
+</field>
+</form>
+</formset>
+
+</form-validation>        
